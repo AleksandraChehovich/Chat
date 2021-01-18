@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Button from './SendButton';
 
 const RegistrationForm = (props) => {
     const [name, setName] = useState('');
@@ -23,7 +24,7 @@ const RegistrationForm = (props) => {
             value={name}
             onChange={handleChange}
             type='text'/>
-            <button className='logIn_button' type='submit'>Save</button>
+            <Button classN={'logIn_button'} action={'Save'}/>
         </form>
     )
 }

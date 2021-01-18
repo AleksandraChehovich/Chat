@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from './SendButton';
 
 class Form extends React.Component {
     constructor(props) {
@@ -34,11 +35,9 @@ class Form extends React.Component {
                     value={this.state.value} 
                     onChange={this.handleChange}>
                     </textarea>
-                    <button 
-                    className='message-form_button' 
-                    type='submit'>
-                        Send
-                    </button>
+                    <Button 
+                    classN={'message-form_button'} 
+                    action={'Send'}/>
                 </div>
             </form>
         );

@@ -1,0 +1,29 @@
+.message-form {
+    margin-left: 4rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+
+    &_input {
+        width: 30rem;
+        border: none;
+        border-radius: $borderRadius;
+
+        &:focus {
+            outline: 2px auto $blue;
+        }
+    }
+
+    &_button {
+        width: 4rem;
+        border: none;
+        font-size: 14px;
+        padding: 12px;
+        margin: 0 1rem;
+        border-radius: $borderRadius;
+        cursor: pointer;
+        background: $blue;
+        color:$light-gray;
+        transition: all .2s ease-in;
+    }
+}

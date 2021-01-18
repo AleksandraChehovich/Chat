@@ -1,0 +1,64 @@
+.nav {
+    display: flex;
+
+    &_logo,
+    &_status {
+        flex: 1;
+        padding: 15px;
+    }
+
+    &_logo {
+        padding-left: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &_status {
+        flex: 14;
+        text-transform: capitalize;
+        font-size: 20px;
+        text-align: left;
+
+        &-item {
+            position: relative;
+            background: $lilac;
+            border: none;
+            font-size: 20px;
+            min-width: 50px;
+            border-radius: $borderRadius;
+            cursor: pointer;
+
+            &:hover {
+                color: $dark;
+            }
+
+            &:hover::after {
+                content: attr(data-title); 
+                position: absolute;
+                top: 120%;
+                left: 10%;
+                font-size: 12px;
+                width: 95px;
+                color: $blue;
+                border-radius: $borderRadius;
+                background-color: #fff;
+                border: 1px solid $dark;
+                padding: 3px;
+            }
+        }
+    }
+}
+
+
+.logo {
+    display: flex;
+
+    &_item {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin: 1px;
+        box-shadow: inset 1px 0px 2px 0px #000000ad;
+    }
+}

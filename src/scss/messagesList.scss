@@ -1,0 +1,52 @@
+.messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+
+    &-wrapper {
+        height: 69vh;
+        padding: 1rem 2rem;
+        border: 3px solid $light-gray;
+        background: #fff;
+        overflow-y: hidden;
+
+        &:hover {
+            overflow-y: auto;
+        }
+
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            background-color: $blue;
+            box-shadow: 0 0 1px rgba(255,255,255,0.5);
+        }
+    }
+}
+
+.message {
+    padding: 0.5rem 1rem;
+    margin: 0.2rem 10px;
+    display: inline-block;
+    border-radius: $borderRadius;
+    max-width: 50%;
+
+    &__sent {
+        background: $yellow;
+        align-self: flex-end;
+    }
+
+    &_author {
+        text-align: right;
+        font-size: 12px;
+    }
+
+    &_text {
+        text-align: left;
+    }
+}

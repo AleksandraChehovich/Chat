@@ -6,7 +6,10 @@ const Message = (props) => {
     return (
         <div className='message message__sent'>
             <div className='message_time'>{props.time}</div>
-            <div className='message_author'>{props.from}:</div>
+            <div className='message_author'>
+                <span className='message_author__from'>From: </span>
+                {props.from}
+                </div>
             <div className='message_text'>{props.message}</div>
         </div>
     )

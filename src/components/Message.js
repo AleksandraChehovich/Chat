@@ -5,6 +5,7 @@ const Message = (props) => {
 
     return (
         <div className='message message__sent'>
+            <div className='message_time'>{props.time}</div>
             <div className='message_author'>{props.from}:</div>
             <div className='message_text'>{props.message}</div>
         </div>
@@ -13,7 +14,8 @@ const Message = (props) => {
 
 Message.propTypes = {
     from: PropTypes.string,
-    message: PropTypes.string
+    message: PropTypes.string,
+    time: PropTypes.string
 }
 
 export default Message;

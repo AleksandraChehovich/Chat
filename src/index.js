@@ -4,9 +4,9 @@ import './scss/main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Chat from './components/App';
+import App from './components/App';
 
 ReactDOM.render(
-     <Chat />, document.getElementById('root')
+     <App />, document.getElementById('root')
      );
      

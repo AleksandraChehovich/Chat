@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 import Nav from './Nav';
-import Form from './Form';
+import MessageForm from './Form';
 import MessagesList from './Messages';
-import LogIn from './Registration_window';
+import LogInWindow from './Registration_window';
 
-const Chat = () => {
+const App= () => {
     const [messages, setMessages] = useState([]);
     const [name, setName] = useState(localStorage.getItem('chat_name'));
 
@@ -19,12 +19,12 @@ const Chat = () => {
 
     return (
         <div className='chat-wrapper'>
-            <LogIn logIn={name} onSubmit={changeName}/>
+            <LogInWindow logIn={name} onSubmit={changeName}/>
             <Nav name={name} onClick={changeName}/>
             <MessagesList messages={messages}/>
-            <Form name={name} onSubmit={addNewMessage}/>
+            <MessageForm name={name} onSubmit={addNewMessage}/>
         </div>
     );    
 }
 
-export default Chat;
+export default App;

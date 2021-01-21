@@ -9,9 +9,6 @@ class Form extends React.Component {
             author: localStorage.getItem('chat_name'),
             value: ''
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (event) => {

@@ -1,17 +1,33 @@
 import React, { useState } from 'react';
+import socket from './Socket';
 
 import Nav from './Nav';
 import MessageForm from './Form';
 import MessagesList from './Messages';
 import LogInWindow from './Registration_window';
 
+const isOpen = (socket) => (socket.readyState === socket.OPEN);
+
 const App= () => {
-    const [messages, setMessages] = useState([]);
+    const [recievedMessages, setRecievedMessages] = useState([]);
     const [name, setName] = useState(localStorage.getItem('chat_name'));
 
     const addNewMessage = (mesObject) => {
-        setMessages(messages.concat([mesObject]));
+        socket.send(JSON.stringify(mesObject));
+        console.log(isOpen(socket))
     };
+
+    socket.onmessage = function(event) {
+        let messagesArray = Array.from(JSON.parse(event.data));
+        console.log(messagesArray);
+        setRecievedMessages(recievedMessages.concat(messagesArray));
+    }
+
+    socket.onmessage = function(event) {
+        let messagesArray = Array.from(JSON.parse(event.data));
+        console.log(messagesArray);
+        setRecievedMessages(recievedMessages.concat(messagesArray));
+    }
 
     const changeName = (value) => {
         setName(value);
@@ -21,7 +37,7 @@ const App= () => {
         <div className='chat-wrapper'>
             <LogInWindow logIn={name} onSubmit={changeName}/>
             <Nav name={name} onClick={changeName}/>
-            <MessagesList messages={messages}/>
+            <MessagesList recievedMessages={recievedMessages}/>
             <MessageForm name={name} onSubmit={addNewMessage}/>
         </div>
     );    

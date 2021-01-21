@@ -18,8 +18,8 @@ class Form extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.onSubmit({ from: this.props.name,
-                              message: this.state.value,
-                              time: (new Date()).toLocaleTimeString() });
+                              message: this.state.value
+                            });
         this.setState({value: ''});
     }
 

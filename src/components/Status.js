@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 class Status extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     handleChange = () => {
@@ -15,10 +14,10 @@ class Status extends React.Component {
         return (
             <div className='nav_status'>
                 <button 
-                data-title='Click to change' 
-                className='nav_status-item'
-                onClick={this.handleChange}>
-                    {this.props.status}
+                    data-title='Click to change' 
+                    className='nav_status-item'
+                    onClick={this.handleChange}>
+                        {this.props.status}
                 </button>
             </div>
         )

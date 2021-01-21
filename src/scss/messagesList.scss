@@ -41,6 +41,11 @@
         align-self: flex-end;
     }
 
+    &__recieve {
+        background: $blue;
+        align-self: flex-start;
+    }
+
     &_author {
         text-align: right;
         font-size: 13px;

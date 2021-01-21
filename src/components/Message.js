@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Message = (props) => {
-
+const SendMessage = (props) => {
+    let classN = props.from === localStorage.getItem('chat_name') ? 'message message__sent' : 'message message__recieve';
+    let date = new Date(props.time);
     return (
-        <div className='message message__sent'>
-            <div className='message_time'>{props.time}</div>
+        <div className={classN}>
+            <div className='message_time'>{date.toLocaleTimeString()}</div>
             <div className='message_author'>
                 <span className='message_author__from'>From: </span>
                 {props.from}
@@ -15,10 +16,11 @@ const Message = (props) => {
     )
 }
 
-Message.propTypes = {
+SendMessage.propTypes = {
     from: PropTypes.string,
     message: PropTypes.string,
-    time: PropTypes.string
+    className: PropTypes.string,
+    time: PropTypes.number
 }
 
-export default Message;
+export default SendMessage;

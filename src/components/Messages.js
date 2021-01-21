@@ -8,11 +8,12 @@ class Messages extends React.Component {
     }
 
     render() {
-        let messages = this.props.messages;
+        let recievedMessages = this.props.recievedMessages;
+        recievedMessages.flat()
         return (
             <div className='messages-wrapper'>
                 <div className='messages'>
-                    {messages.map((message, index) => <Message key={index} {...message} />)}
+                    {recievedMessages.map(message => <Message key={message.id} {...message} />)}
                 </div>
             </div>
             
@@ -22,7 +23,8 @@ class Messages extends React.Component {
 
 Messages.propTypes = {
     messages: PropTypes.array,
-    map: PropTypes.func
+    map: PropTypes.func,
+    recievedMessages: PropTypes.array
 }
 
 export default Messages;

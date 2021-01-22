@@ -18,15 +18,10 @@ const App= () => {
     };
 
     socket.onmessage = function(event) {
-        let messagesArray = Array.from(JSON.parse(event.data));
+        let messagesArray = JSON.parse(event.data).reverse();
         console.log(messagesArray);
         setRecievedMessages(recievedMessages.concat(messagesArray));
-    }
-
-    socket.onmessage = function(event) {
-        let messagesArray = Array.from(JSON.parse(event.data));
-        console.log(messagesArray);
-        setRecievedMessages(recievedMessages.concat(messagesArray));
+        console.log(recievedMessages);
     }
 
     const changeName = (value) => {

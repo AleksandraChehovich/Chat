@@ -6,7 +6,7 @@ function IconSvg() {
             <div className='logo'>
                 <svg 
                     className='nav_icon-svg'
-                    fill="#5c5a67"
+                    fill="#9ec2e6"
                     id="Capa_1" 
                     height="512" 
                     viewBox="0 0 512 512" 

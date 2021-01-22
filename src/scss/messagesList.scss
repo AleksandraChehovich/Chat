@@ -8,7 +8,8 @@
     &-wrapper {
         height: 69vh;
         padding: 1rem 2rem;
-        border: 3px solid $light-gray;
+        border-top: 1px solid #d4d4d45e;
+        border-bottom: 1px solid #d4d4d45e;
         background: #fff;
         overflow-y: hidden;
 
@@ -33,42 +34,42 @@
     padding: 0.5rem 1rem;
     margin: 0.2rem 10px;
     display: inline-block;
-    border-radius: $borderRadius;
     max-width: 50%;
 
     &__sent {
-        background: $yellow;
+        background: #ffabd2cc;
         align-self: flex-end;
     }
 
     &__recieve {
-        background: $blue;
+        background: #9ec2e6a6;
         align-self: flex-start;
     }
 
     &_author {
         text-align: right;
         font-size: 13px;
-        color: #fff;
-        text-shadow: -1px 1px 2px $dark;
+        color: $dark;
+        display: inline-block;
 
         &__from {
             font-size: 9px;
             font-style: italic;
-            color: #fff;
-            text-shadow: -1px 1px 2px $dark;
+            color: $dark;
         }
     }
 
     &_text {
-        text-align: left;
+        padding-top: 5px;
+        text-align: right;
+        border-top: 1px solid #635b6a33;
     }
 
     &_time {
         font-size: 9px;
         text-align: right;
         color: $dark;
-        color: #fff;
-        text-shadow: -1px 1px 2px $dark;
+        display: inline-block;
+        margin-right: 40px;
     }
 }

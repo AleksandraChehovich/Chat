@@ -1,29 +1,40 @@
 .message-form {
-    margin-left: 4rem;
-    margin-top: 0.5rem;
+    margin: 0 3rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
 
     &_input {
-        width: 30rem;
+        width: 100%;
         border: none;
         border-radius: $borderRadius;
 
         &:focus {
-            outline: 2px auto $blue;
+            outline: none;
+            color: #212121;
         }
     }
 
     &_button {
-        width: 4rem;
+        width: 9rem;
+        text-transform: uppercase;
         border: none;
         font-size: 14px;
         padding: 12px;
-        margin: 0 1rem;
-        border-radius: $borderRadius;
         cursor: pointer;
         background: $blue;
         color:$light-gray;
         transition: all .2s ease-in;
+    }
+}
+
+.input_wrapper {
+    padding: 10px 0;
+    border-bottom: 2px solid #f3f3f3;
+    transition: all .3s ease-out;
+    margin-bottom: 10px;
+
+    &:hover {
+        border-bottom: 2px solid #ff64ceb9;
     }
 }

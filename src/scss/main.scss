@@ -5,7 +5,6 @@
 @import './messagesList.scss';
 @import './registrWindow.scss';
 
-
 * {
     color: $dark;
     box-sizing: border-box;
@@ -20,10 +19,11 @@ body {
 }
 
 .chat-wrapper {
-    background-color: $lilac;
+    background-color: #fff;
     margin: auto;
     max-width: 800px;
     display: flex;
     flex-direction: column;
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    box-shadow: $shadow;
 }

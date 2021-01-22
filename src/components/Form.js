@@ -27,12 +27,14 @@ class Form extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className='message-form'>
-                    <textarea 
-                    className='message-form_input' 
-                    cols="60" rows="3" type='text' 
-                    value={this.state.value} 
-                    onChange={this.handleChange}>
-                    </textarea>
+                    <div className='input_wrapper'>
+                        <input 
+                            className='message-form_input' 
+                            cols="60" rows="3" type='text' 
+                            value={this.state.value} 
+                            onChange={this.handleChange}
+                        />
+                    </div>
                     <Button 
                     classN={'message-form_button'} 
                     action={'Send'}/>

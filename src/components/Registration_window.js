@@ -20,14 +20,16 @@ const RegistrationForm = (props) => {
 
     return (
         <form className='logIn_window' onSubmit={handleSubmit}>
-            <input 
-                className='logIn_input' 
-                placeholder='Enter your name' 
-                // value={name}
-                // onChange={handleChange}
-                ref={(input) => {inputRef = input}}
-                type='text'
-            />
+            <div className='input_wrapper'>
+                <input 
+                    className='logIn_input' 
+                    placeholder='Enter your name' 
+                    // value={name}
+                    // onChange={handleChange}
+                    ref={(input) => {inputRef = input}}
+                    type='text'
+                />
+            </div>
             <Button classN={'logIn_button'} action={'Save'}/>
         </form>
     )

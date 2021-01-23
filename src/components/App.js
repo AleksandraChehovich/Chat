@@ -12,6 +12,8 @@ const App= () => {
     const [recievedMessages, setRecievedMessages] = useState([]);
     const [name, setName] = useState(localStorage.getItem('chat_name'));
 
+    let audioRef = null;
+
     const addNewMessage = (mesObject) => {
         socket.send(JSON.stringify(mesObject));
         console.log(isOpen(socket))
@@ -20,6 +22,9 @@ const App= () => {
     socket.onmessage = function(event) {
         let messagesArray = JSON.parse(event.data).reverse();
         console.log(messagesArray);
+        if (messagesArray.length !== 0) {
+            audioRef.play();
+        }
         setRecievedMessages(recievedMessages.concat(messagesArray));
         console.log(recievedMessages);
     }
@@ -30,6 +35,9 @@ const App= () => {
 
     return (
         <div className='chat-wrapper'>
+            <audio ref={(audio) => {audioRef = audio}}>
+                <source src={'./clearly-602.mp3'} />
+            </audio>
             <LogInWindow logIn={name} onSubmit={changeName}/>
             <Nav name={name} onClick={changeName}/>
             <MessagesList recievedMessages={recievedMessages}/>

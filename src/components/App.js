@@ -15,14 +15,20 @@ const App= () => {
     let audioRef = null;
 
     const addNewMessage = (mesObject) => {
-        socket.send(JSON.stringify(mesObject));
+        if (!socket.readyState) {
+            setTimeout(() => {
+                addNewMessage(mesObject);
+            }, 100);
+        } else {
+            socket.send(JSON.stringify(mesObject));
+        }
         console.log(isOpen(socket))
     };
 
     socket.onmessage = function(event) {
         let messagesArray = JSON.parse(event.data).reverse();
         console.log(messagesArray);
-        if (messagesArray.length !== 0) {
+        if (recievedMessages.length !== 0) {
             audioRef.play();
         }
         setRecievedMessages(recievedMessages.concat(messagesArray));

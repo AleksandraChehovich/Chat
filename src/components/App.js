@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import socket from './Socket';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Nav from './Nav';
 import MessageForm from './Form';
@@ -8,13 +7,48 @@ import LogInWindow from './Registration_window';
 
 const isOpen = (socket) => (socket.readyState === socket.OPEN);
 
+const URL = 'ws://chat.shas.tel';
+
 const App= () => {
     const [recievedMessages, setRecievedMessages] = useState([]);
     const [name, setName] = useState(localStorage.getItem('chat_name'));
+    const [socket, setSocket] = useState(new WebSocket(URL));
 
-    let audioRef = null;
+    const audioRef =  useRef(null);
 
+    useEffect(() => {
+        
+        socket.onopen = function() {
+            console.log('Соединение установлено.');
+        };
+
+        socket.onclose = function(event) {
+            if(event.wasClear) {
+                console.log('Соединение закрыто.');
+            } else {
+                console.log('Обрыв соединения.');
+                setSocket(new WebSocket(URL));
+            }
+            console.log(`Код ${event.code} причина`);
+        };
+
+        socket.onmessage = function(event) {
+            let messagesArray = JSON.parse(event.data).reverse();
+            console.log(messagesArray);
+            if (messagesArray.length !== 0) {
+
+                audioRef.current.play();
+            }
+            setRecievedMessages(recievedMessages.concat(messagesArray));
+            console.log(recievedMessages);
+        };
+
+    });
+        
     const addNewMessage = (mesObject) => {
+        if (mesObject.message === '') {
+            return;
+        }
         if (!socket.readyState) {
             setTimeout(() => {
                 addNewMessage(mesObject);
@@ -25,23 +59,13 @@ const App= () => {
         console.log(isOpen(socket))
     };
 
-    socket.onmessage = function(event) {
-        let messagesArray = JSON.parse(event.data).reverse();
-        console.log(messagesArray);
-        if (recievedMessages.length !== 0) {
-            audioRef.play();
-        }
-        setRecievedMessages(recievedMessages.concat(messagesArray));
-        console.log(recievedMessages);
-    }
-
     const changeName = (value) => {
         setName(value);
     }
 
     return (
         <div className='chat-wrapper'>
-            <audio ref={(audio) => {audioRef = audio}}>
+            <audio ref={audioRef}>
                 <source src={'./clearly-602.mp3'} />
             </audio>
             <LogInWindow logIn={name} onSubmit={changeName}/>

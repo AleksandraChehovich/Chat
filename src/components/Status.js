@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import SettingSvg from './SettingSVG';
 class Status extends React.Component {
     constructor(props) {
         super(props);
@@ -19,6 +21,9 @@ class Status extends React.Component {
                     onClick={this.handleChange}>
                         {this.props.status}
                 </button>
+                <Link to='/setting'>
+                    <SettingSvg />
+                </Link>
             </div>
         )
     }

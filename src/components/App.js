@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Nav from './Nav';
 import MessageForm from './Form';
 import MessagesList from './Messages';
-import LogInWindow from './Registration_window';
+import LogInWindow from './logInWindow';
+import notifyMe from './Notification';
+import Info from './Information';
+import Setting from './Setting';
 
 const isOpen = (socket) => (socket.readyState === socket.OPEN);
 
@@ -28,6 +32,7 @@ const App= () => {
             } else {
                 console.log('Обрыв соединения.');
                 setSocket(new WebSocket(URL));
+                setRecievedMessages([]);
             }
             console.log(`Код ${event.code} причина`);
         };
@@ -38,6 +43,7 @@ const App= () => {
             if (messagesArray.length !== 0) {
 
                 audioRef.current.play();
+                notifyMe();
             }
             setRecievedMessages(recievedMessages.concat(messagesArray));
             console.log(recievedMessages);
@@ -64,15 +70,23 @@ const App= () => {
     }
 
     return (
-        <div className='chat-wrapper'>
-            <audio ref={audioRef}>
-                <source src={'./clearly-602.mp3'} />
-            </audio>
-            <LogInWindow logIn={name} onSubmit={changeName}/>
-            <Nav name={name} onClick={changeName}/>
-            <MessagesList recievedMessages={recievedMessages}/>
-            <MessageForm name={name} onSubmit={addNewMessage}/>
-        </div>
+        <Router>
+            <div className='chat-wrapper'>
+                <audio ref={audioRef}>
+                    <source src={'./clearly-602.mp3'} />
+                </audio>
+                <LogInWindow logIn={name} onSubmit={changeName}/>
+                <Nav name={name} onClick={changeName}/>
+                <Switch>
+                    <Route path='/info' component={Info} />
+                    <Route path='/' exact>
+                        <MessagesList recievedMessages={recievedMessages}/>
+                        <MessageForm name={name} onSubmit={addNewMessage}/>
+                    </Route>
+                    <Route path='/setting' component={Setting} />
+                </Switch>
+            </div>
+        </Router>
     );    
 }
 

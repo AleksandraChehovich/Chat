@@ -1,7 +1,8 @@
 .nav {
     display: flex;
 
-    &_icon-svg {
+    &_icon-svg,
+    &_setting {
         height: 40px;
         width: 40px;
     }
@@ -22,7 +23,9 @@
     &_status {
         flex: 14;
         font-size: 20px;
-        text-align: left;
+        display: flex;
+        justify-content: space-between;
+
 
         &-item {
             position: relative;

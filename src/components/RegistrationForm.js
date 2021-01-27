@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './SendButton';
 
 const RegistrationForm = (props) => {
-    // const [name, setName] = useState('');
-
-    // const handleChange = (event) => {
-    //     setName(event.target.value);
-    // }
 
     let inputRef = null;
 
@@ -24,8 +19,6 @@ const RegistrationForm = (props) => {
                 <input 
                     className='logIn_input' 
                     placeholder='Enter your name' 
-                    // value={name}
-                    // onChange={handleChange}
                     ref={(input) => {inputRef = input}}
                     type='text'
                 />
@@ -35,26 +28,8 @@ const RegistrationForm = (props) => {
     )
 }
 
-const LogIn = (props) => {
-   
-    const registrate = (name) => {
-        props.onSubmit(name);
-    }
-
-    return (
-        <div className='logIn' style={{display: props.logIn ? 'none' : 'block'}}>
-            <RegistrationForm onSubmit={registrate}/>
-        </div>
-    )
-}
-
 RegistrationForm.propTypes = {
     onSubmit: PropTypes.func
 }
 
-LogIn.propTypes = {
-    onSubmit: PropTypes.func,
-    logIn: PropTypes.string
-}
-
-export default LogIn;
+export default RegistrationForm;

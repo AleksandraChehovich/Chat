@@ -9,7 +9,9 @@ class Messages extends React.Component {
 
     render() {
         let recievedMessages = this.props.recievedMessages;
+
         recievedMessages.flat()
+        
         return (
             <div className='messages-wrapper'>
                 <div className='messages'>

@@ -1,0 +1,132 @@
+.nav {
+    display: flex;
+
+    &_icon-svg,
+    &_setting {
+        height: 40px;
+        width: 40px;
+    }
+
+    &_logo,
+    &_status {
+        flex: 1;
+        padding: 15px;
+    }
+
+    &_logo {
+        padding-left: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &_status {
+        flex: 14;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+
+
+        &-item {
+            position: relative;
+            border: none;
+            font-size: 20px;
+            min-width: 50px;
+            padding: 5px;
+            background: none;
+            cursor: pointer;
+            color: $blue;
+            transition: all .2s cubic-bezier(0.4, 0, 1, 1);
+
+            &:hover {
+                color: $dark;
+                background: none;
+            }
+
+            &:hover::after {
+                content: attr(data-title); 
+                position: absolute;
+                top: 120%;
+                left: 10%;
+                font-size: 12px;
+                width: 95px;
+                color: $blue;
+                background-color: #fff;
+                border: 0.5px solid $dark;
+                padding: 3px;
+            }
+        }
+    }
+}
+
+
+.logo {
+    display: flex;
+
+    &_item {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin: 1px;
+        box-shadow: inset 1px 0px 2px 0px #000000ad;
+    }
+}
+
+
+.info {
+    &_header {
+        margin-bottom: 5px;
+    }
+
+    &_message-counter {
+        display: flex;
+
+        & span {
+            flex: 1;
+            text-align: left;
+        }
+    }
+
+    &_name {
+        display: flex;
+
+        & span {
+            flex: 1;
+            text-align: left;
+        }
+    }
+
+    & div {
+        margin: 15px 0;
+    }
+
+    &_description {
+        margin-top: 0;
+        font-size: 10px;
+    }
+}
+
+.setting {
+    & div {
+        margin: 15px 0;
+    }
+
+    &_items {
+        display: flex;
+
+        & div {
+            flex: 1;
+        }
+    }
+}
+
+svg {
+    width: 40px;
+    height: 40px;
+}
+
+.return-link {
+    font-size: 12px;
+    text-decoration: inherit;
+    color: #9ec2e6
+}

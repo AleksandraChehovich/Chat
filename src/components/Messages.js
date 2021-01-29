@@ -1,10 +1,14 @@
 import React from 'react';
 import Message from './Message';
 import PropTypes from 'prop-types';
-
+import ScrollArrow from './ScrollArrow';
 class Messages extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    handleScrollToView = () => {
+        this.div.scrollTo(0, this.div.scrollHeight);
     }
 
     render() {
@@ -13,10 +17,13 @@ class Messages extends React.Component {
         recievedMessages.flat()
         
         return (
-            <div className='messages-wrapper'>
+            <div className='messages-wrapper' ref={node => this.div = node}>
                 <div className='messages'>
                     {recievedMessages.map(message => <Message key={message.id} {...message} />)}
                 </div>
+                <ScrollArrow 
+                    onClick={this.handleScrollToView}
+                />
             </div>
             
         )

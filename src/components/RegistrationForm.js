@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import Button from './SendButton';
+import { en, ru } from './Data';
 
 const RegistrationForm = (props) => {
 
@@ -18,18 +21,26 @@ const RegistrationForm = (props) => {
             <div className='input_wrapper'>
                 <input 
                     className='logIn_input' 
-                    placeholder='Enter your name' 
+                    placeholder={props.language === 'en' ? en['enter'] : ru['enter']} 
                     ref={(input) => {inputRef = input}}
                     type='text'
                 />
             </div>
-            <Button classN={'logIn_button'} action={'Save'}/>
+            <Button classN={'logIn_button'} action={props.language === 'en' ? en['save'] : ru['save']}/>
         </form>
     )
 }
 
 RegistrationForm.propTypes = {
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func,
+    language: PropTypes.string
 }
 
-export default RegistrationForm;
+const mapStateToProps = (state) => {
+    return {
+        language: state.language.language,
+        theme: state.theme.theme
+    }
+}
+
+export default connect(mapStateToProps)(RegistrationForm);

@@ -6,12 +6,11 @@
 @import './registrWindow.scss';
 
 * {
-    color: $dark;
     box-sizing: border-box;
 }
 
 body {
-    box-sizing: border-box;
+    color: $dark;
     margin: 0;
     padding: 2%;
     text-align: center;
@@ -26,6 +25,15 @@ body {
     flex-direction: column;
     padding-bottom: 0.5rem;
     box-shadow: $shadow;
+    position: relative;
+
+    &__light {
+        background-color: #fff;
+    }
+
+    &__dark {
+        background-color: #393a57;
+    }
 }
 
 .extra-window {
@@ -36,25 +44,8 @@ body {
     color: $blue;
     border-top: 1px solid #d4d4d45e;
     border-bottom: 1px solid #d4d4d45e;
-
-    & div {
-        color: $blue;
-    }
 }
 
-.info {
-    &_header {
-        margin-bottom: 20px;
-    }
-}
-
-.setting {
-   &_header {
-        color: $blue;
-   }
-}
-
-svg {
-    width: 40px;
-    height: 40px;
+input[type='radio'] {
+    cursor: pointer;
 }

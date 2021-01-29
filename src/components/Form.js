@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import Button from './SendButton';
+import { en, ru } from './Data';
 
 class Form extends React.Component {
     constructor(props) {
@@ -37,7 +40,7 @@ class Form extends React.Component {
                     </div>
                     <Button 
                     classN={'message-form_button'} 
-                    action={'Send'}/>
+                    action={this.props.language === 'en' ? en['send'] : ru['send']}/>
                 </div>
             </form>
         );
@@ -46,7 +49,15 @@ class Form extends React.Component {
 
 Form.propTypes = {
     onSubmit: PropTypes.func,
-    name: PropTypes.string
+    name: PropTypes.string,
+    language: PropTypes.string
 }
 
-export default Form;
+const mapSateToProps = (state) => {
+    return {
+        language: state.language.language,
+        theme: state.theme.theme
+    }
+}
+
+export default connect(mapSateToProps)(Form);

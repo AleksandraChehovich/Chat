@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Nav from './Nav';
 import MessageForm from './Form';
@@ -8,12 +10,11 @@ import LogInWindow from './logInWindow';
 import notifyMe from './Notification';
 import Info from './Information';
 import Setting from './Setting';
-
-const isOpen = (socket) => (socket.readyState === socket.OPEN);
+import { countMessages } from '../actions/actions';
 
 const URL = 'ws://chat.shas.tel';
 
-const App= () => {
+const App= (props) => {
     const [recievedMessages, setRecievedMessages] = useState([]);
     const [name, setName] = useState(localStorage.getItem('chat_name'));
     const [socket, setSocket] = useState(new WebSocket(URL));
@@ -43,7 +44,9 @@ const App= () => {
             if (messagesArray.length !== 0) {
 
                 audioRef.current.play();
-                notifyMe();
+                if (document.visibilityState == "hidden") {
+                    notifyMe();
+                }       
             }
             setRecievedMessages(recievedMessages.concat(messagesArray));
             console.log(recievedMessages);
@@ -61,8 +64,9 @@ const App= () => {
             }, 100);
         } else {
             socket.send(JSON.stringify(mesObject));
+            props.countMessages();
         }
-        console.log(isOpen(socket))
+        sessionStorage.setItem('messages_counter', props.counter + 1);
     };
 
     const changeName = (value) => {
@@ -71,7 +75,7 @@ const App= () => {
 
     return (
         <Router>
-            <div className='chat-wrapper'>
+            <div className={`chat-wrapper chat-wrapper__${props.theme}`}>
                 <audio ref={audioRef}>
                     <source src={'./clearly-602.mp3'} />
                 </audio>
@@ -90,4 +94,21 @@ const App= () => {
     );    
 }
 
-export default App;
+App.propTypes = {
+    countMessages: PropTypes.func,
+    counter: PropTypes.number,
+    theme: PropTypes.string
+}
+
+const mapDispatchToProps = {
+    countMessages
+}
+
+const mapSateToProps = (state) => {
+    return {
+        counter: state.counter.messageCount,
+        theme: state.theme.theme
+    }
+}
+
+export default connect(mapSateToProps, mapDispatchToProps)(App);

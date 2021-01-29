@@ -71,3 +71,62 @@
         box-shadow: inset 1px 0px 2px 0px #000000ad;
     }
 }
+
+
+.info {
+    &_header {
+        margin-bottom: 5px;
+    }
+
+    &_message-counter {
+        display: flex;
+
+        & span {
+            flex: 1;
+            text-align: left;
+        }
+    }
+
+    &_name {
+        display: flex;
+
+        & span {
+            flex: 1;
+            text-align: left;
+        }
+    }
+
+    & div {
+        margin: 15px 0;
+    }
+
+    &_description {
+        margin-top: 0;
+        font-size: 10px;
+    }
+}
+
+.setting {
+    & div {
+        margin: 15px 0;
+    }
+
+    &_items {
+        display: flex;
+
+        & div {
+            flex: 1;
+        }
+    }
+}
+
+svg {
+    width: 40px;
+    height: 40px;
+}
+
+.return-link {
+    font-size: 12px;
+    text-decoration: inherit;
+    color: #9ec2e6
+}

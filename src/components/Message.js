@@ -1,17 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-const SendMessage = (props) => {
-    let classN = props.from === localStorage.getItem('chat_name') ? 'message message__sent' : 'message message__recieve';
-    let date = new Date(props.time);
+const SendMessage = ({ from, message, time }) => {
+    
+    let messageClass = classNames({
+        message: true,
+        'message message__sent': from === localStorage.getItem('chat_name'),
+        'message message__recieve': from !== localStorage.getItem('chat_name')
+    });
+
+    let date = new Date(time);
+
     return (
-        <div className={classN}>
+        <div className={messageClass}>
             <div className='message_time'>{date.toLocaleTimeString()}</div>
             <div className='message_author'>
                 <span className='message_author__from'>From: </span>
-                {props.from}
+                {from}
                 </div>
-            <div className='message_text'>{props.message}</div>
+            <div className='message_text'>{message}</div>
         </div>
     )
 }
@@ -19,7 +27,6 @@ const SendMessage = (props) => {
 SendMessage.propTypes = {
     from: PropTypes.string,
     message: PropTypes.string,
-    className: PropTypes.string,
     time: PropTypes.number
 }
 

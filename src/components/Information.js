@@ -3,31 +3,31 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { en, ru } from './Data';
+import { language } from './Data';
 
-const Info = ({counter, language}) => {
+const Info = ({counter, currentLanguage}) => {
     return (
         <div className='extra-window info'>
             <Link to='/'>
                 <div className='return-link'>
-                    {language === 'en' ?  en['back to chat'] : ru['back to chat']}
+                {language[currentLanguage].backToChat}
                 </div>
             </Link>
             <h2 className='info_header'>
-                {language === 'en' ?  en['personal info'] : ru['personal info']}
+                {language[currentLanguage].personalInfo}
             </h2>
             <p className='info_description'>
                 ##########
             </p>
             <div className='info_message-counter'>
                 <span>
-                    {language === 'en' ?  en['number of messages'] : ru['number of messages']} 
+                    {language[currentLanguage].numberOfMessages}
                 </span>
                 <span>{counter}</span>
             </div>
             <div className='info_name'>
                 <span>
-                    {language === 'en' ?  en['user name'] : ru['user name']} 
+                    {language[currentLanguage].userName}
                 </span>
                 <span>{localStorage.getItem('chat_name')}</span>
             </div>
@@ -37,13 +37,13 @@ const Info = ({counter, language}) => {
 
 Info.propTypes = {
     counter: PropTypes.number,
-    language: PropTypes.string
+    currentLanguage: PropTypes.string
 }
 
 const mapSateToProps = (state) => {
     return {
         counter: state.counter.messageCount,
-        language: state.language.language
+        currentLanguage: state.language.language
     }
 }
 

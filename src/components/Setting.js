@@ -2,34 +2,42 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeLanguageToRu, changeLanguageToEn, changeThemeToDark, changeThemeToLight } from '../actions/actions';
-import { en, ru } from './Data';
+import { changeLanguage, changeTheme } from '../actions/actions';
+import { language } from './Data';
 
 
-const Setting = ({ language, toEn, toRu, theme, toDark, toLight }) => {
+const Setting = ({ currentLanguage, currentTheme, changeLanguage, changeTheme }) => {
+
+    const changeLanguages = (lang) => {
+        changeLanguage(lang)
+    }
+
+    const changeThemes = (theme) => {
+        changeTheme(theme)
+    }
 
     return (
         <div className='extra-window setting'>
             <Link to='/'>
                 <div className='return-link'>
-                    {language === 'en' ?  en['back to chat'] : ru['back to chat']}
+                    {language[currentLanguage].backToChat}
                 </div>
             </Link>
             <h2 className='setting_header'>
-                {language === 'en' ?  en['setting'] : ru['setting']}
+                {language[currentLanguage].setting}
             </h2>
             <div className='setting_items'>
                 <div className='setting_themes themes'>
                     <div>
-                        {language === 'en' ?  en['change theme'] : ru['change theme']}
+                        {language[currentLanguage].changeTheme}
                     </div>
                     <div className='themes_item themes_item__light'>
                         <label htmlFor='light'>
-                            {language === 'en' ?  en['light theme'] : ru['light theme']}   
+                            {language[currentLanguage].lightTheme}
                         </label>
                         <input
-                            defaultChecked={theme === 'light'}
-                            onChange={() => { toLight() }}
+                            defaultChecked={currentTheme === 'light'}
+                            onChange={() => { changeThemes('light') }}
                             name='theme' 
                             type='radio' 
                             id='light' 
@@ -37,11 +45,11 @@ const Setting = ({ language, toEn, toRu, theme, toDark, toLight }) => {
                     </div>
                     <div className='themes_item themes_item__dark'>
                         <label htmlFor='dark'>
-                            {language === 'en' ?  en['dark theme'] : ru['dark theme']} 
+                            {language[currentLanguage].darkTheme}
                         </label>
                         <input 
-                            defaultChecked={theme === 'dark'}
-                            onChange={() => { toDark() }}
+                            defaultChecked={currentTheme === 'dark'}
+                            onChange={() => { changeThemes('dark') }}
                             name='theme' 
                             type='radio' 
                             id='dark' 
@@ -50,15 +58,15 @@ const Setting = ({ language, toEn, toRu, theme, toDark, toLight }) => {
                 </div>
                 <div className='setting_language languages'>
                     <div>
-                        {language === 'en' ?  en['change language'] : ru['change language']} 
+                        {language[currentLanguage].changeLanguage}
                     </div>
                         <div className='languages_item languages_item__ru'>
                             <label htmlFor='ru'>
-                                {language === 'en' ?  en['russian'] : ru['russian']} 
+                                {language[currentLanguage].russian}
                             </label>
                             <input 
-                                defaultChecked={language === 'ru'}
-                                onChange={() => { toRu() }}
+                                defaultChecked={currentLanguage === 'ru'}
+                                onChange={() => { changeLanguages('ru') }}
                                 name='lang' 
                                 type='radio' 
                                 id='ru' 
@@ -66,11 +74,11 @@ const Setting = ({ language, toEn, toRu, theme, toDark, toLight }) => {
                         </div>
                         <div className='languages_item languages_item__en'>
                             <label htmlFor='en'>
-                                {language === 'en' ?  en['english'] : ru['english']} 
+                                {language[currentLanguage].english}
                             </label>
                             <input 
-                                defaultChecked={language === 'en'}
-                                onChange={() => { toEn() }}
+                                defaultChecked={currentLanguage === 'en'}
+                                onChange={() => { changeLanguages('en') }}
                                 name='lang' 
                                 type='radio' 
                                 id='en' 
@@ -83,26 +91,22 @@ const Setting = ({ language, toEn, toRu, theme, toDark, toLight }) => {
 }
 
 Setting.propTypes = {
-    language: PropTypes.string,
-    toEn: PropTypes.func,
-    toRu: PropTypes.func,
-    toDark: PropTypes.func,
-    toLight: PropTypes.func,
-    theme: PropTypes.string
+    currentLanguage: PropTypes.string,
+    changeLanguage: PropTypes.func,
+    changeTheme: PropTypes.func,
+    currentTheme: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
     return {
-        language: state.language.language,
-        theme: state.theme.theme
+        currentLanguage: state.language.language,
+        currentTheme: state.theme.theme
     }
 }
 
 const mapDispatchToProps = {
-    toEn: changeLanguageToEn,
-    toRu: changeLanguageToRu,
-    toLight: changeThemeToLight,
-    toDark: changeThemeToDark
+    changeLanguage: changeLanguage,
+    changeTheme: changeTheme
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Setting);

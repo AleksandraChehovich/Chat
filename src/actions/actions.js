@@ -6,26 +6,16 @@ export function countMessages() {
     }
 }
 
-export function changeLanguageToRu() {
+export function changeLanguage(language) {
     return {
-        type: actions.RU_LANGUAGE
+        type: actions.CHANGE_LANGUAGE,
+        payload: language
     }
 }
 
-export function changeLanguageToEn() {
+export function changeTheme(theme) {
     return {
-        type: actions.EN_LANGUAGE
-    }
-}
-
-export function changeThemeToDark() {
-    return {
-        type: actions.DARK_THEME
-    }
-}
-
-export function changeThemeToLight() {
-    return {
-        type: actions.LIGHT_THEME
+        type: actions.CHANGE_THEME,
+        payload: theme
     }
 }

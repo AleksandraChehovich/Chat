@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import Nav from './Nav';
 import MessageForm from './Form';
@@ -69,13 +70,16 @@ const App= (props) => {
         sessionStorage.setItem('messages_counter', props.counter + 1);
     };
 
-    const changeName = (value) => {
-        setName(value);
-    }
+    const changeName = (value) => setName(value);
+
+    let wrapperClass = classNames({
+        'chat-wrapper': true,
+        [`chat-wrapper__${props.theme}`]: true
+    })
 
     return (
         <Router>
-            <div className={`chat-wrapper chat-wrapper__${props.theme}`}>
+            <div className={wrapperClass}>
                 <audio ref={audioRef}>
                     <source src={'./clearly-602.mp3'} />
                 </audio>

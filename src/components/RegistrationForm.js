@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Button from './SendButton';
-import { en, ru } from './Data';
+import { language } from './Data';
 
 const RegistrationForm = (props) => {
 
@@ -21,25 +21,24 @@ const RegistrationForm = (props) => {
             <div className='input_wrapper'>
                 <input 
                     className='logIn_input' 
-                    placeholder={props.language === 'en' ? en['enter'] : ru['enter']} 
+                    placeholder={language[props.currentLanguage].enter}
                     ref={(input) => {inputRef = input}}
                     type='text'
                 />
             </div>
-            <Button classN={'logIn_button'} action={props.language === 'en' ? en['save'] : ru['save']}/>
+            <Button classN={'logIn_button'} action={language[props.currentLanguage].save}/>
         </form>
     )
 }
 
 RegistrationForm.propTypes = {
     onSubmit: PropTypes.func,
-    language: PropTypes.string
+    currentLanguage: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
     return {
-        language: state.language.language,
-        theme: state.theme.theme
+        currentLanguage: state.language.language
     }
 }
 

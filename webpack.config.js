@@ -83,7 +83,7 @@ module.exports = {
   mode: 'development',
   entry: './index.js',
   output: {
-    filename: `./components/${filename('js')}`,
+    filename: `./js/${filename('js')}`,
     path: path.resolve(__dirname, 'dist'),
     publicPath: '',
   },

@@ -11,6 +11,7 @@ import LogInWindow from './logInWindow';
 import notifyMe from './Notification';
 import Info from './Information';
 import Setting from './Setting';
+import ErrorBoundary from './ErrorBoundary';
 import { countMessages } from '../actions/actions';
 
 const URL = 'ws://chat.shas.tel';
@@ -79,21 +80,23 @@ const App= (props) => {
 
     return (
         <Router>
-            <div className={wrapperClass}>
-                <audio ref={audioRef}>
-                    <source src={'./clearly-602.mp3'} />
-                </audio>
-                <LogInWindow logIn={name} onSubmit={changeName}/>
-                <Nav name={name} onClick={changeName}/>
-                <Switch>
-                    <Route path='/info' component={Info} />
-                    <Route path='/' exact>
-                        <MessagesList recievedMessages={recievedMessages}/>
-                        <MessageForm name={name} onSubmit={addNewMessage}/>
-                    </Route>
-                    <Route path='/setting' component={Setting} />
-                </Switch>
-            </div>
+            <ErrorBoundary>
+                <div className={wrapperClass}>
+                    <audio ref={audioRef}>
+                        <source src={'./clearly-602.mp3'} />
+                    </audio>
+                    <LogInWindow logIn={name} onSubmit={changeName}/>
+                    <Nav name={name} onClick={changeName}/>
+                    <Switch>
+                        <Route path='/info' component={Info} />
+                        <Route path='/' exact>
+                            <MessagesList recievedMessages={recievedMessages}/>
+                            <MessageForm name={name} onSubmit={addNewMessage}/>
+                        </Route>
+                        <Route path='/setting' component={Setting} />
+                    </Switch>
+                </div>
+            </ErrorBoundary>
         </Router>
     );    
 }

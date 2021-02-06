@@ -89,11 +89,11 @@ const App= (props) => {
                     <Nav name={name} onClick={changeName}/>
                     <Switch>
                         <Route path='/info' component={Info} />
-                        <Route path='/' exact>
+                        <Route path='/setting' component={Setting} />
+                        <Route path='/'>
                             <MessagesList recievedMessages={recievedMessages}/>
                             <MessageForm name={name} onSubmit={addNewMessage}/>
                         </Route>
-                        <Route path='/setting' component={Setting} />
                     </Switch>
                 </div>
             </ErrorBoundary>

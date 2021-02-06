@@ -1,0 +1,51 @@
+@import './variables.scss';
+@import './navigation.scss';
+@import './messageForm.scss';
+@import './button.scss';
+@import './messagesList.scss';
+@import './registrWindow.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: $dark;
+    margin: 0;
+    padding: 2%;
+    text-align: center;
+    font-family: 'Arimo', sans-serif;
+}
+
+.chat-wrapper {
+    background-color: #fff;
+    margin: auto;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.5rem;
+    box-shadow: $shadow;
+    position: relative;
+
+    &__light {
+        background-color: #fff;
+    }
+
+    &__dark {
+        background-color: #393a57;
+    }
+}
+
+.extra-window {
+    height: 75vh;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    color: $blue;
+    border-top: 1px solid #d4d4d45e;
+    border-bottom: 1px solid #d4d4d45e;
+}
+
+input[type='radio'] {
+    cursor: pointer;
+}

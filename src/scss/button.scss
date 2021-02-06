@@ -1,0 +1,16 @@
+button {
+    transition: all .5s ease-in;
+    font-family: 'Arimo', sans-serif;
+
+    &:focus {
+    outline: none;
+    }
+
+    &:hover {
+       background: #78a2cc;
+    }
+
+    &:active {
+        background: #668bb1;
+    } 
+}

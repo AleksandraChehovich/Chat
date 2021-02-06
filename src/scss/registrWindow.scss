@@ -1,0 +1,37 @@
+.logIn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &_window {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 1rem 1rem;
+        box-shadow: $shadow;
+        display: inline-block;
+    }
+
+    &_input {
+        display: block;
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &_button {
+        width: 9rem;
+        text-transform: uppercase;
+        border: none;
+        font-size: 14px;
+        padding: 8px 12px;
+        cursor: pointer;
+        background: $blue;
+        color:$light-gray;
+    }
+}
